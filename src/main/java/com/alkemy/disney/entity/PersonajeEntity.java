@@ -1,4 +1,4 @@
-package com.alkemy.disney.disney.entity;
+package com.alkemy.disney.entity;
 
 
 import lombok.Data;
@@ -21,8 +21,8 @@ public class PersonajeEntity {
     private int edad;
     private float peso;
     private String historia;
-    @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
-    private List<PeliculaSerieEntity> peliculasSeries = new ArrayList<>();
+    @ManyToMany(mappedBy = "personajes")
+    private Set<PeliculaSerieEntity> peliculasSeries = new HashSet<>();
 
 
 }
