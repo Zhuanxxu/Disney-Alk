@@ -38,8 +38,8 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
         /*for(PeliculaSerieEntity peliculaSerie: entities){
             result.add(peliculaSerieMapper.peliculaSerieEntity2DTO(peliculaSerie));
         }*/
-
-
         return dtos;
     }
+
+
 }

@@ -39,4 +39,17 @@ public class PersonajeController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        this.personajeService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonajeDTO> editar(@PathVariable Long id, @RequestBody PersonajeDTO dto) {
+
+        PersonajeDTO dtoFull = personajeService.editar(id, dto);
+        return ResponseEntity.ok().body(dtoFull);
+    }
 }

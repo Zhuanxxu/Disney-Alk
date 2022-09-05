@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import java.util.Set;
 
 @Setter @Getter
 @Entity
+@SQLDelete(sql = "UPDATE personaje SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @Table(name = "personaje")
 public class PersonajeEntity {
     @Id
@@ -29,5 +33,6 @@ public class PersonajeEntity {
     @ManyToMany(mappedBy = "personajes",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<PeliculaSerieEntity> peliculasSeries = new ArrayList<>();
 
+    private boolean deleted = Boolean.FALSE;
 
 }

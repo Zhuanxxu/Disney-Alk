@@ -25,7 +25,6 @@ public class PeliculaSerieController {
         return ResponseEntity.ok().body(peliculaSeries);
     }
     
-    
     @PostMapping
     public ResponseEntity<PeliculaSerieDTO> save(@RequestBody PeliculaSerieDTO peliculaSerie){
 
@@ -33,4 +32,6 @@ public class PeliculaSerieController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(peliculaSerieGuardado);
     }
+
+
 }

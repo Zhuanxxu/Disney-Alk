@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,6 +18,8 @@ import java.util.Set;
 
 @Setter @Getter
 @Entity
+@SQLDelete(sql = "UPDATE peliculaSerie SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @Table(name = "peliculaSerie")
 public class PeliculaSerieEntity {
     @Id
@@ -44,4 +48,5 @@ public class PeliculaSerieEntity {
             inverseJoinColumns = @JoinColumn(name = "personaje_id"))
     private List<PersonajeEntity> personajes = new ArrayList<>();
 
+    private boolean deleted = Boolean.FALSE;
 }

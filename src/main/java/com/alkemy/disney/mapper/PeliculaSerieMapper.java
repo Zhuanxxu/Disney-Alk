@@ -48,4 +48,12 @@ public class PeliculaSerieMapper {
         }
         return dtos;
     }
+
+    public List<PeliculaSerieEntity> peliculaSerieDTO2EntityList(List<PeliculaSerieDTO> dtos){
+        List<PeliculaSerieEntity> entities = new ArrayList<>();
+        for (PeliculaSerieDTO peliculaSerieDTO: dtos){
+            entities.add(peliculaSerieDTO2Entity(peliculaSerieDTO));
+        }
+        return entities;
+    }
 }

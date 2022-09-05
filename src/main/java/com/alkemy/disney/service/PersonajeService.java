@@ -11,4 +11,8 @@ public interface PersonajeService {
     List<PersonajeDTO> getAllPersonajes();
 
     PersonajeDTO getDetailsById(Long id);
+
+    void delete(Long id);
+
+    PersonajeDTO editar (Long id, PersonajeDTO dto);
 }
