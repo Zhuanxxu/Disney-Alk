@@ -1,7 +1,11 @@
 package com.alkemy.disney.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Setter @Getter
 @Entity
 @Table(name = "personaje")
 public class PersonajeEntity {
@@ -21,8 +25,9 @@ public class PersonajeEntity {
     private int edad;
     private float peso;
     private String historia;
-    @ManyToMany(mappedBy = "personajes")
-    private Set<PeliculaSerieEntity> peliculasSeries = new HashSet<>();
+
+    @ManyToMany(mappedBy = "personajes",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    private List<PeliculaSerieEntity> peliculasSeries = new ArrayList<>();
 
 
 }

@@ -10,7 +10,9 @@ import com.alkemy.disney.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonajeServiceImpl implements PersonajeService {
@@ -26,11 +28,24 @@ public class PersonajeServiceImpl implements PersonajeService {
 
         return result;
     }
+    public PersonajeDTO getDetailsById(Long id){
+        Optional<PersonajeEntity> optPersonaje = personajeRepository.findById(id);
 
+        PersonajeEntity personaje = optPersonaje.get();
 
+        PersonajeDTO dto = personajeMapper.personajeEntity2DTO(personaje);
+
+        return dto;
+    }
+
+    @Override
     public List<PersonajeDTO> getAllPersonajes() {
         List<PersonajeEntity> entities = personajeRepository.findAll();
-        List<PersonajeDTO> result = personajeMapper.personajeEntityList2DTOList(entities);
+        List<PersonajeDTO> result = new ArrayList<>();
+        for(PersonajeEntity entity : entities){
+            result.add(personajeMapper.personajeEntity2DTO(entity));
+        }
+
         return result;
     }
 

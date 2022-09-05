@@ -1,14 +1,20 @@
 package com.alkemy.disney.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Data
+@Setter @Getter
 @Entity
 @Table(name = "peliculaSerie")
 public class PeliculaSerieEntity {
@@ -23,11 +29,11 @@ public class PeliculaSerieEntity {
 
     private int calificacion;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "genero_id", insertable = false, updatable = false)
     private GeneroEntity genero;
 
-    @ManyToMany(
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
@@ -36,6 +42,6 @@ public class PeliculaSerieEntity {
             name="peliculaSerie_Personaje",
             joinColumns = @JoinColumn(name = "peliculaSerie_id"),
             inverseJoinColumns = @JoinColumn(name = "personaje_id"))
-    private Set<PersonajeEntity> personajes = new HashSet<>();
+    private List<PersonajeEntity> personajes = new ArrayList<>();
 
 }

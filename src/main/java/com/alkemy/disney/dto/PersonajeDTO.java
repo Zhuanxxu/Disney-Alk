@@ -1,6 +1,10 @@
 package com.alkemy.disney.dto;
 
+import com.alkemy.disney.entity.PeliculaSerieEntity;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class PersonajeDTO {
@@ -10,5 +14,6 @@ public class PersonajeDTO {
     private int edad;
     private float peso;
     private String historia;
+    private List<PeliculaSerieDTO> peliculasSeries = new ArrayList<>();
 
 }
