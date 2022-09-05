@@ -2,6 +2,7 @@ package com.alkemy.disney.service.impl;
 
 import com.alkemy.disney.dto.PersonajeDTO;
 import com.alkemy.disney.entity.PersonajeEntity;
+import com.alkemy.disney.excepciones.ParamNotFound;
 import com.alkemy.disney.mapper.PeliculaSerieMapper;
 import com.alkemy.disney.mapper.PersonajeMapper;
 import com.alkemy.disney.mapper.PersonajeMapper;
@@ -61,7 +62,7 @@ public class PersonajeServiceImpl implements PersonajeService {
     public PersonajeDTO editar (Long id, PersonajeDTO dto){
         Optional<PersonajeEntity> optPersonaje = personajeRepository.findById(id);
         if (!optPersonaje.isPresent()){
-
+            throw new ParamNotFound("Personaje id no encontrado");
         }
         PersonajeEntity entity = optPersonaje.get();
         entity.setNombre(dto.getNombre());
@@ -72,7 +73,7 @@ public class PersonajeServiceImpl implements PersonajeService {
         entity.setPeliculasSeries(peliculaSerieMapper.peliculaSerieDTO2EntityList(dto.getPeliculasSeries()));
         entity.setId(id);
 
-        PersonajeEntity personajeGuardado = personajeRepository.save(entity);
+        personajeRepository.save(entity);
 
         PersonajeDTO personajeDTO = personajeMapper.personajeEntity2DTO(entity);
         return personajeDTO;
