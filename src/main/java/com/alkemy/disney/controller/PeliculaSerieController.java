@@ -2,6 +2,7 @@ package com.alkemy.disney.controller;
 
 import com.alkemy.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.dto.PeliculaSerieDTO;
+import com.alkemy.disney.dto.PersonajeDTO;
 import com.alkemy.disney.service.PeliculaSerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,13 @@ public class PeliculaSerieController {
         System.out.println("hola");
         List<PeliculaSerieDTO> peliculaSeries = peliculaSerieService.getAllPeliculaSerie();
         return ResponseEntity.ok().body(peliculaSeries);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PeliculaSerieDTO> getDetailsById(@PathVariable Long id){
+        PeliculaSerieDTO peliculaSeriesDTO = this.peliculaSerieService.getDetailsById(id);
+
+        return ResponseEntity.ok(peliculaSeriesDTO);
     }
     
     @PostMapping

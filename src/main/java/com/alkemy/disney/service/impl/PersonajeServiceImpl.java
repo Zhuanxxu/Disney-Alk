@@ -73,7 +73,7 @@ public class PersonajeServiceImpl implements PersonajeService {
         entity.setPeliculasSeries(peliculaSerieMapper.peliculaSerieDTO2EntityList(dto.getPeliculasSeries()));
         entity.setId(id);
 
-        personajeRepository.save(entity);
+        PersonajeEntity entitySaved = personajeRepository.save(entity);
 
         PersonajeDTO personajeDTO = personajeMapper.personajeEntity2DTO(entity);
         return personajeDTO;

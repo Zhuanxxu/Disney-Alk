@@ -34,7 +34,7 @@ public class PersonajeMapper {
         dto.setPeso(entity.getPeso());
         dto.setHistoria(entity.getHistoria());
         dto.setEdad(entity.getEdad());
-        List<PeliculaSerieDTO> listaPelis = this.peliculaSerieMapper.peliculaSerieEntityList2DTOList(entity.getPeliculasSeries());
+        List<PeliculaSerieDTO> listaPelis = this.peliculaSerieMapper.peliculaSerieEntityList2DTOList(entity.getPeliculasSeries(), false);
 
         dto.setPeliculasSeries(listaPelis);
         return dto;

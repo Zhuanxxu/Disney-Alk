@@ -10,7 +10,7 @@ public interface PeliculaSerieService {
 
     PeliculaSerieDTO save(PeliculaSerieDTO dto);
     List<PeliculaSerieDTO> getAllPeliculaSerie();
-
+    PeliculaSerieDTO getDetailsById(Long id);
 
 
 
