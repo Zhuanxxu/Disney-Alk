@@ -11,7 +11,9 @@ public interface PeliculaSerieService {
     PeliculaSerieDTO save(PeliculaSerieDTO dto);
     List<PeliculaSerieDTO> getAllPeliculaSerie();
     PeliculaSerieDTO getDetailsById(Long id);
-
+    PeliculaSerieDTO agregarPje(Long idPeli, Long idPj);
+    PeliculaSerieDTO quitarPje(Long idPeli, Long idPj);
+    List<PeliculaSerieDTO> busquedaXparametro(String nombre, String genero, String orden);
 
 
 }

@@ -32,6 +32,16 @@ public class PeliculaSerieController {
 
         return ResponseEntity.ok(peliculaSeriesDTO);
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<PeliculaSerieDTO>> peliculaFiltro(
+            @RequestParam(required = false) String titulo,
+            @RequestParam(required = false) String genero,
+            @RequestParam(required = false, defaultValue = "ASC") String orden){
+
+        List<PeliculaSerieDTO> dtos = peliculaSerieService.busquedaXparametro(titulo, genero, orden);
+        return ResponseEntity.ok(dtos);
+    }
     
     @PostMapping
     public ResponseEntity<PeliculaSerieDTO> save(@RequestBody PeliculaSerieDTO peliculaSerie){
@@ -39,6 +49,20 @@ public class PeliculaSerieController {
         PeliculaSerieDTO peliculaSerieGuardado = peliculaSerieService.save(peliculaSerie);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(peliculaSerieGuardado);
+    }
+
+    @PostMapping("/{id}/personaje/{idPj}")
+    public ResponseEntity<Void> agregarPj(@PathVariable Long id, @PathVariable Long idPj){
+
+        peliculaSerieService.agregarPje(id, idPj);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{id}/personaje/{idPj}")
+    public ResponseEntity<Void> quitarPj(@PathVariable Long id, @PathVariable Long idPj){
+
+        peliculaSerieService.quitarPje(id, idPj);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
