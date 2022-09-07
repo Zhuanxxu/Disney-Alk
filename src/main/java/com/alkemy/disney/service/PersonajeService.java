@@ -15,4 +15,7 @@ public interface PersonajeService {
     void delete(Long id);
 
     PersonajeDTO editar (Long id, PersonajeDTO dto);
+
+    List<PersonajeDTO> busquedaXparametro(String nombre, Integer edad,Long peso, Long id,
+                                          List<Long> peliculas, String orden);
 }

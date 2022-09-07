@@ -27,10 +27,8 @@ public class PeliculaSerieEntity {
     private Long Id;
     private String imagen;
     private String titulo;
-
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechaCreacion;
-
     private int calificacion;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -49,4 +47,6 @@ public class PeliculaSerieEntity {
     private List<PersonajeEntity> personajes = new ArrayList<>();
 
     private boolean deleted = Boolean.FALSE;
+
+    
 }

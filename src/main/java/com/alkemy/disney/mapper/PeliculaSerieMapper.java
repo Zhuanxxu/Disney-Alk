@@ -37,7 +37,7 @@ public class PeliculaSerieMapper {
         dto.setFechaCreacion(entity.getFechaCreacion());
         dto.setGenero(entity.getGenero());
         if (loadPersonaje) {
-            List<PersonajeDTO> dtos = this.personajeMapper.personajeEntityList2DTOList(entity.getPersonajes());
+            List<PersonajeDTO> dtos = this.personajeMapper.personajeEntityList2DTOList(entity.getPersonajes(), false);
             dto.setPersonajes(dtos);
         }
         return dto;

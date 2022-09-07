@@ -19,12 +19,14 @@ public class PersonajeController {
     @Autowired
     private PersonajeService personajeService;
 
+    //GET todos los personajes
     @GetMapping
     public ResponseEntity<List<PersonajeDTO>> getAll(){
         List<PersonajeDTO> personajes = personajeService.getAllPersonajes();
         return ResponseEntity.ok().body(personajes);
     }
 
+    //GET 1 personaje por ID
     @GetMapping("/{id}")
     public ResponseEntity<PersonajeDTO> getDetailsById(@PathVariable Long id){
         PersonajeDTO personaje = this.personajeService.getDetailsById(id);
@@ -32,6 +34,22 @@ public class PersonajeController {
         return ResponseEntity.ok(personaje);
     }
 
+    //GET personajes por filtros
+    @GetMapping("/filter")
+    public ResponseEntity<List<PersonajeDTO>> listPjeFiltro(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) Integer edad,
+            @RequestParam(required = false) Long peso,
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) List<Long> peliculas,
+            @RequestParam(required = false, defaultValue = "ASC") String orden) {
+
+
+        List<PersonajeDTO> dtos = personajeService.busquedaXparametro(nombre, edad, peso, id, peliculas, orden);
+        return ResponseEntity.ok(dtos);
+    }
+
+    //POST nuevo personaje
     @PostMapping
     public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeDTO personaje){
 
@@ -40,12 +58,14 @@ public class PersonajeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
     }
 
+    //DELETE borrar personaje
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         this.personajeService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    //PUT editar personaje
     @PutMapping("/{id}")
     public ResponseEntity<PersonajeDTO> editar(@PathVariable Long id, @RequestBody PersonajeDTO dto) {
 

@@ -26,13 +26,10 @@ public class PersonajeEntity {
     private Long Id;
     private String imagen;
     private String nombre;
-    private int edad;
-    private float peso;
+    private Integer edad;
+    private Long peso;
     private String historia;
-
     @ManyToMany(mappedBy = "personajes",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<PeliculaSerieEntity> peliculasSeries = new ArrayList<>();
-
     private boolean deleted = Boolean.FALSE;
-
 }
