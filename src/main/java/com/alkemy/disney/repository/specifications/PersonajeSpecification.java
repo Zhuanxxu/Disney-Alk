@@ -32,12 +32,7 @@ public class PersonajeSpecification {
                 );
             }/*Creo el primer filtro si tiene contenido el parametro nombre*/
 
-            if(filtrosDto.getPeso()!= null){
-                predicates.add(
-                        criteriaBuilder.equal( (root.get("peso")),filtrosDto.getPeso())
-                );
 
-            }
             if(filtrosDto.getEdad()!= null){
                 predicates.add(
                         criteriaBuilder.equal( (root.get("edad")),filtrosDto.getEdad())
@@ -46,13 +41,13 @@ public class PersonajeSpecification {
             }
 
             if(!CollectionUtils.isEmpty(filtrosDto.getPeliculas())){
-                Join<PeliculaSerieEntity, PersonajeEntity> join= root.join("peliculas", JoinType.INNER);
-                Expression<String> peliculasId= join.get("id");
+                Join<PeliculaSerieEntity, PersonajeEntity> join= root.join("peliculasSeries", JoinType.INNER);
+                Expression<String> peliculasId= join.get("Id");
                 predicates.add(peliculasId.in(filtrosDto.getPeliculas()));
             };
             query.distinct(true);
 
-            String orderByField="orden";
+            String orderByField="nombre";
             query.orderBy(
                     filtrosDto.isASC()?
                             criteriaBuilder.asc(root.get(orderByField)):

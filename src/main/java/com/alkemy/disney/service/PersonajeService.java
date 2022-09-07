@@ -16,6 +16,5 @@ public interface PersonajeService {
 
     PersonajeDTO editar (Long id, PersonajeDTO dto);
 
-    List<PersonajeDTO> busquedaXparametro(String nombre, Integer edad,Long peso, Long id,
-                                          List<Long> peliculas, String orden);
+    List<PersonajeDTO> busquedaXparametro(String nombre, Integer edad, List<Long> peliculas, String orden);
 }

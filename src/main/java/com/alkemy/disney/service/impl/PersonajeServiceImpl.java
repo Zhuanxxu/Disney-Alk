@@ -84,9 +84,9 @@ public class PersonajeServiceImpl implements PersonajeService {
         return personajeDTO;
     }
 
-    public List<PersonajeDTO> busquedaXparametro(String nombre, Integer edad,Long peso, Long id,
-                                              List<Long> peliculas, String orden){
-        PersonajeFilterDTO filtro = new PersonajeFilterDTO(id,nombre,edad, peso,orden , peliculas);
+    public List<PersonajeDTO> busquedaXparametro(String nombre, Integer edad,
+                                                 List<Long> peliculas, String orden) {
+        PersonajeFilterDTO filtro = new PersonajeFilterDTO(nombre, edad, orden, peliculas);
         List<PersonajeEntity> entities = personajeRepository.findAll(this.personajeSpecification.getByFilters(filtro));
         List<PersonajeDTO> dtos = personajeMapper.personajeEntityList2DTOList(entities, true);
 

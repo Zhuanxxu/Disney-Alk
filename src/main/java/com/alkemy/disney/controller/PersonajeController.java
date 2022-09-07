@@ -39,13 +39,11 @@ public class PersonajeController {
     public ResponseEntity<List<PersonajeDTO>> listPjeFiltro(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) Integer edad,
-            @RequestParam(required = false) Long peso,
-            @RequestParam(required = false) Long id,
             @RequestParam(required = false) List<Long> peliculas,
             @RequestParam(required = false, defaultValue = "ASC") String orden) {
 
 
-        List<PersonajeDTO> dtos = personajeService.busquedaXparametro(nombre, edad, peso, id, peliculas, orden);
+        List<PersonajeDTO> dtos = personajeService.busquedaXparametro(nombre, edad, peliculas, orden);
         return ResponseEntity.ok(dtos);
     }
 

@@ -32,4 +32,18 @@ public class PersonajeEntity {
     @ManyToMany(mappedBy = "personajes",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<PeliculaSerieEntity> peliculasSeries = new ArrayList<>();
     private boolean deleted = Boolean.FALSE;
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o ==null)return false;
+        if (getClass() != o.getClass()) return false;
+        if (!(o instanceof PersonajeEntity)) return false;
+        final PersonajeEntity personaje = (PersonajeEntity) o;
+        return personaje.Id==this.Id;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
 }
