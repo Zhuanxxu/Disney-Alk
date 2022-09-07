@@ -90,6 +90,15 @@ public class PersonajeServiceImpl implements PersonajeService {
         List<PersonajeEntity> entities = personajeRepository.findAll(this.personajeSpecification.getByFilters(filtro));
         List<PersonajeDTO> dtos = personajeMapper.personajeEntityList2DTOList(entities, true);
 
+        //Anulo valores que no pide que devuelva el ENDPOINT
+        for (PersonajeDTO dto: dtos){
+            dto.setPeso(null);
+            dto.setHistoria(null);
+            dto.setId(null);
+            dto.setEdad(null);
+            dto.setPeliculasSeries(null);
+        }
+
         return dtos;
 
     };
