@@ -48,5 +48,12 @@ public class PeliculaSerieEntity {
 
     private boolean deleted = Boolean.FALSE;
 
+    public void agregarPje(PersonajeEntity pje){
+        this.personajes.add(pje);
+    }
+    public void quitarPje(PersonajeEntity pje){
+        this.personajes.remove(pje);
+    }
+
     
 }
