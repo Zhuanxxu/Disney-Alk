@@ -22,7 +22,7 @@ public class GeneroServiceImpl implements GeneroService {
         GeneroEntity entity = generoMapper.generoDTO2Entity(dto);
         GeneroEntity entitySaved = generoRepository.save(entity);
         GeneroDTO result = generoMapper.generoEntity2DTO(entitySaved);
-
+        System.out.println("hola");
         return result;
     }
 
