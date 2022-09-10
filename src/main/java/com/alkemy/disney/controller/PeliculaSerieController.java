@@ -1,5 +1,6 @@
 package com.alkemy.disney.controller;
 
+import com.alkemy.disney.dto.PeliculaSerieBasicDTO;
 import com.alkemy.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
@@ -13,13 +14,13 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("peliculasseries")
+@RequestMapping("movies")
 public class PeliculaSerieController {
 
     @Autowired
     private PeliculaSerieService peliculaSerieService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<PeliculaSerieDTO>> getAll(){
         System.out.println("hola");
         List<PeliculaSerieDTO> peliculaSeries = peliculaSerieService.getAllPeliculaSerie();
@@ -33,13 +34,13 @@ public class PeliculaSerieController {
         return ResponseEntity.ok(peliculaSeriesDTO);
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<List<PeliculaSerieDTO>> peliculaFiltro(
+    @GetMapping
+    public ResponseEntity<List<PeliculaSerieBasicDTO>> peliculaFiltro(
             @RequestParam(required = false) String titulo,
             @RequestParam(required = false) String genero,
             @RequestParam(required = false, defaultValue = "ASC") String orden){
 
-        List<PeliculaSerieDTO> dtos = peliculaSerieService.busquedaXparametro(titulo, genero, orden);
+        List<PeliculaSerieBasicDTO> dtos = peliculaSerieService.busquedaXparametro(titulo, genero, orden);
         return ResponseEntity.ok(dtos);
     }
     
@@ -51,14 +52,14 @@ public class PeliculaSerieController {
         return ResponseEntity.status(HttpStatus.CREATED).body(peliculaSerieGuardado);
     }
 
-    @PostMapping("/{id}/personaje/{idPj}")
+    @PostMapping("/{id}/characters/{idPj}")
     public ResponseEntity<Void> agregarPj(@PathVariable Long id, @PathVariable Long idPj){
 
         peliculaSerieService.agregarPje(id, idPj);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @DeleteMapping("/{id}/personaje/{idPj}")
+    @DeleteMapping("/{id}/characters/{idPj}")
     public ResponseEntity<Void> quitarPj(@PathVariable Long id, @PathVariable Long idPj){
 
         peliculaSerieService.quitarPje(id, idPj);

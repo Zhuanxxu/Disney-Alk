@@ -1,5 +1,6 @@
 package com.alkemy.disney.service.impl;
 
+import com.alkemy.disney.dto.PersonajeBasicDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
 import com.alkemy.disney.dto.PersonajeFilterDTO;
 import com.alkemy.disney.entity.PersonajeEntity;
@@ -84,22 +85,21 @@ public class PersonajeServiceImpl implements PersonajeService {
         return personajeDTO;
     }
 
-    public List<PersonajeDTO> busquedaXparametro(String nombre, Integer edad,
+    public List<PersonajeBasicDTO> busquedaXparametro(String nombre, Integer edad,
                                                  List<Long> peliculas, String orden) {
         PersonajeFilterDTO filtro = new PersonajeFilterDTO(nombre, edad, orden, peliculas);
         List<PersonajeEntity> entities = personajeRepository.findAll(this.personajeSpecification.getByFilters(filtro));
         List<PersonajeDTO> dtos = personajeMapper.personajeEntityList2DTOList(entities, true);
-
+        List<PersonajeBasicDTO> dtosBasic = new ArrayList<>();
         //Anulo valores que no pide que devuelva el ENDPOINT
         for (PersonajeDTO dto: dtos){
-            dto.setPeso(null);
-            dto.setHistoria(null);
-            dto.setId(null);
-            dto.setEdad(null);
-            dto.setPeliculasSeries(null);
+            PersonajeBasicDTO dtoBasic = new PersonajeBasicDTO();
+            dtoBasic.setImagen(dto.getImagen());
+            dtoBasic.setNombre(dto.getNombre());
+            dtosBasic.add(dtoBasic);
         }
 
-        return dtos;
+        return dtosBasic;
 
     };
 

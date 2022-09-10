@@ -1,5 +1,6 @@
 package com.alkemy.disney.service.impl;
 
+import com.alkemy.disney.dto.PeliculaSerieBasicDTO;
 import com.alkemy.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.dto.PeliculaSerieFilterDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
@@ -100,12 +101,20 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
     }
 
     @Override
-    public List<PeliculaSerieDTO> busquedaXparametro(String nombre, String genero, String orden) {
+    public List<PeliculaSerieBasicDTO> busquedaXparametro(String nombre, String genero, String orden) {
         PeliculaSerieFilterDTO peliFilter = new PeliculaSerieFilterDTO(nombre,genero, orden);
         List<PeliculaSerieEntity> entidades = peliculaSerieRepository.findAll(peliculaSerieSpecification.getByFilters(peliFilter));
         List<PeliculaSerieDTO> dtos = peliculaSerieMapper.peliculaSerieEntityList2DTOList(entidades, true);
+        List<PeliculaSerieBasicDTO> dtosBasic = new ArrayList<>();
+        for(PeliculaSerieDTO dto: dtos){
+            PeliculaSerieBasicDTO dtoBasic = new PeliculaSerieBasicDTO();
+            dtoBasic.setFechaCreacion(dto.getFechaCreacion());
+            dtoBasic.setTitulo(dto.getTitulo());
+            dtoBasic.setImagen(dto.getImagen());
+            dtosBasic.add(dtoBasic);
+        }
 
-        return dtos;
+        return dtosBasic;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.alkemy.disney.service;
 
+import com.alkemy.disney.dto.PeliculaSerieBasicDTO;
 import com.alkemy.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
 
@@ -13,7 +14,7 @@ public interface PeliculaSerieService {
     PeliculaSerieDTO getDetailsById(Long id);
     PeliculaSerieDTO agregarPje(Long idPeli, Long idPj);
     PeliculaSerieDTO quitarPje(Long idPeli, Long idPj);
-    List<PeliculaSerieDTO> busquedaXparametro(String nombre, String genero, String orden);
+    List<PeliculaSerieBasicDTO> busquedaXparametro(String nombre, String genero, String orden);
 
 
 }

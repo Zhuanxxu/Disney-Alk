@@ -1,6 +1,7 @@
 package com.alkemy.disney.controller;
 
 import com.alkemy.disney.dto.GeneroDTO;
+import com.alkemy.disney.dto.PersonajeBasicDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
 import com.alkemy.disney.service.PersonajeService;
@@ -13,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("personajes")
+@RequestMapping("characters")
 public class PersonajeController {
 
     @Autowired
     private PersonajeService personajeService;
 
     //GET todos los personajes
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<PersonajeDTO>> getAll(){
         List<PersonajeDTO> personajes = personajeService.getAllPersonajes();
         return ResponseEntity.ok().body(personajes);
@@ -35,15 +36,15 @@ public class PersonajeController {
     }
 
     //GET personajes por filtros
-    @GetMapping("/filter")
-    public ResponseEntity<List<PersonajeDTO>> listPjeFiltro(
+    @GetMapping
+    public ResponseEntity<List<PersonajeBasicDTO>> listPjeFiltro(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) Integer edad,
             @RequestParam(required = false) List<Long> peliculas,
             @RequestParam(required = false, defaultValue = "ASC") String orden) {
 
 
-        List<PersonajeDTO> dtos = personajeService.busquedaXparametro(nombre, edad, peliculas, orden);
+        List<PersonajeBasicDTO> dtos = personajeService.busquedaXparametro(nombre, edad, peliculas, orden);
         return ResponseEntity.ok(dtos);
     }
 
