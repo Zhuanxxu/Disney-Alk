@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 public class PeliculaSerieBasicDTO {
-    private Long Id;
     private String imagen;
     private String titulo;
     private LocalDate fechaCreacion;

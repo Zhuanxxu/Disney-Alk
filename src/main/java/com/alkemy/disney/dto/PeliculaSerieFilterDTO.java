@@ -5,12 +5,12 @@ import lombok.Data;
 @Data
 public class PeliculaSerieFilterDTO {
     private String nombre;
-    private String genero;
+    private Long generoId;
     private String orden;
 
-    public PeliculaSerieFilterDTO(String nombre, String genero, String orden) {
+    public PeliculaSerieFilterDTO(String nombre, Long generoId, String orden) {
         this.nombre = nombre;
-        this.genero = genero;
+        this.generoId = generoId;
         this.orden = orden;
     }
 
