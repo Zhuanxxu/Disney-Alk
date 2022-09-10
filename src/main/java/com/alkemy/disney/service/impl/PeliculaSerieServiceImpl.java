@@ -101,8 +101,8 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
     }
 
     @Override
-    public List<PeliculaSerieBasicDTO> busquedaXparametro(String nombre, String genero, String orden) {
-        PeliculaSerieFilterDTO peliFilter = new PeliculaSerieFilterDTO(nombre,genero, orden);
+    public List<PeliculaSerieBasicDTO> busquedaXparametro(String nombre, Long generoId, String orden) {
+        PeliculaSerieFilterDTO peliFilter = new PeliculaSerieFilterDTO(nombre,generoId, orden);
         List<PeliculaSerieEntity> entidades = peliculaSerieRepository.findAll(peliculaSerieSpecification.getByFilters(peliFilter));
         List<PeliculaSerieDTO> dtos = peliculaSerieMapper.peliculaSerieEntityList2DTOList(entidades, true);
         List<PeliculaSerieBasicDTO> dtosBasic = new ArrayList<>();

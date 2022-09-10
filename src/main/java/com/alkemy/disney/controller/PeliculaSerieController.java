@@ -37,10 +37,10 @@ public class PeliculaSerieController {
     @GetMapping
     public ResponseEntity<List<PeliculaSerieBasicDTO>> peliculaFiltro(
             @RequestParam(required = false) String titulo,
-            @RequestParam(required = false) String genero,
+            @RequestParam(required = false) Long generoId,
             @RequestParam(required = false, defaultValue = "ASC") String orden){
 
-        List<PeliculaSerieBasicDTO> dtos = peliculaSerieService.busquedaXparametro(titulo, genero, orden);
+        List<PeliculaSerieBasicDTO> dtos = peliculaSerieService.busquedaXparametro(titulo, generoId, orden);
         return ResponseEntity.ok(dtos);
     }
     
