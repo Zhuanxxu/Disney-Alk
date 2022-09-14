@@ -31,7 +31,7 @@ public class PersonajeServiceImpl implements PersonajeService {
     @Autowired
     private PeliculaSerieMapper peliculaSerieMapper;
     public PersonajeDTO save(PersonajeDTO dto){
-        PersonajeEntity entity = personajeMapper.personajeDTO2Entity(dto);
+        PersonajeEntity entity = personajeMapper.personajeDTO2Entity(dto,true);
         PersonajeEntity entitySaved = personajeRepository.save(entity);
         PersonajeDTO result = personajeMapper.personajeEntity2DTO(entitySaved, false);
 
@@ -75,7 +75,7 @@ public class PersonajeServiceImpl implements PersonajeService {
         entity.setPeso(dto.getPeso());
         entity.setImagen(dto.getImagen());
         if (!(dto.getPeliculasSeries()==null || dto.getPeliculasSeries().isEmpty()))
-            entity.setPeliculasSeries(peliculaSerieMapper.peliculaSerieDTO2EntityList(dto.getPeliculasSeries()));
+            entity.setPeliculasSeries(peliculaSerieMapper.peliculaSerieDTO2EntityList(dto.getPeliculasSeries(),true));
 
         entity.setId(id);
 

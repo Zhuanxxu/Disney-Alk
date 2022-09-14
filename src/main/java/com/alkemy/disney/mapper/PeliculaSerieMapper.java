@@ -25,7 +25,7 @@ public class PeliculaSerieMapper {
         GeneroEntity genero = new GeneroEntity();
         genero.setId(dto.getGenero());
         peliculaSerieEntity.setGenero(genero);
-        //peliculaSerieEntity.setPersonajes(dto.getPersonajes());
+        peliculaSerieEntity.setPersonajes(personajeMapper.personajeDTOList2EntityList(dto.getPersonajes(),false));
 
 
         return peliculaSerieEntity;
@@ -64,7 +64,7 @@ public class PeliculaSerieMapper {
         return dtos;
     }
 
-    public List<PeliculaSerieEntity> peliculaSerieDTO2EntityList(List<PeliculaSerieDTO> dtos){
+    public List<PeliculaSerieEntity> peliculaSerieDTO2EntityList(List<PeliculaSerieDTO> dtos,boolean loadPersonajes){
         List<PeliculaSerieEntity> entities = new ArrayList<>();
         for (PeliculaSerieDTO peliculaSerieDTO: dtos){
             entities.add(peliculaSerieDTO2Entity(peliculaSerieDTO));

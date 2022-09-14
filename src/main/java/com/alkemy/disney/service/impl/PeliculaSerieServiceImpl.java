@@ -32,7 +32,7 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
     public PeliculaSerieDTO save(PeliculaSerieDTO dto){
         PeliculaSerieEntity entity = peliculaSerieMapper.peliculaSerieDTO2Entity(dto);
         PeliculaSerieEntity entitySaved = peliculaSerieRepository.save(entity);
-        PeliculaSerieDTO result = peliculaSerieMapper.peliculaSerieEntity2DTO(entitySaved, false);
+        PeliculaSerieDTO result = peliculaSerieMapper.peliculaSerieEntity2DTO(entitySaved, true);
 
         return result;
     }

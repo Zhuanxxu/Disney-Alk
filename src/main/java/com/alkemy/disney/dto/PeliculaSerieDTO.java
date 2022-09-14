@@ -27,5 +27,6 @@ public class PeliculaSerieDTO {
     @Max(5)
     private int calificacion;
     private List<PersonajeDTO> personajes = new ArrayList<>();
+
     private Long genero;
 }
