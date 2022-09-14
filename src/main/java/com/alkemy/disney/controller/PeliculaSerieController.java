@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -53,14 +54,14 @@ public class PeliculaSerieController {
     }
 
     @PostMapping("/{id}/characters/{idPj}")
-    public ResponseEntity<Void> agregarPj(@PathVariable Long id, @PathVariable Long idPj){
+    public ResponseEntity<Void> agregarPj(@Valid @PathVariable Long id, @PathVariable Long idPj){
 
         peliculaSerieService.agregarPje(id, idPj);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping("/{id}/characters/{idPj}")
-    public ResponseEntity<Void> quitarPj(@PathVariable Long id, @PathVariable Long idPj){
+    public ResponseEntity<Void> quitarPj(@Valid @PathVariable Long id, @PathVariable Long idPj){
 
         peliculaSerieService.quitarPje(id, idPj);
         return ResponseEntity.status(HttpStatus.CREATED).build();

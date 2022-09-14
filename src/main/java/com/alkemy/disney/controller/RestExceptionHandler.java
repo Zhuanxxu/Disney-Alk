@@ -15,14 +15,33 @@ import java.util.Arrays;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(value = {Throwable.class})
+    protected ResponseEntity<Object> handleThrowable (Throwable ex, WebRequest request){
+        ApiErrorDTO errorDTO = new ApiErrorDTO(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                ex.getMessage(),
+                Arrays.asList("")
+        );
+        return handleExceptionInternal((Exception) ex, errorDTO, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
     @ExceptionHandler(value = {ParamNotFound.class})
     protected ResponseEntity<Object> handleParaNotFound(RuntimeException ex, WebRequest request){
         ApiErrorDTO errorDTO = new ApiErrorDTO(
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.NOT_FOUND,
                 ex.getMessage(),
                 Arrays.asList("Param Not Found")
         );
         return handleExceptionInternal(ex, errorDTO, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
     }
+
+    /*@ExceptionHandler(value = {UserAlreadyExistAuthenticationException.class})
+    protected ResponseEntity<Object> handleUserAlreadyExist(RuntimeException ex, WebRequest request){
+        ApiErrorDTO errorDTO = new ApiErrorDTO(
+                HttpStatus.BAD_REQUEST,
+                ex.getMessage(),
+                Arrays.asList()
+        )
+    }*/
 
 }

@@ -32,7 +32,7 @@ public class PeliculaSerieEntity {
     private int calificacion;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "genero_id", insertable = false, updatable = false)
+    @JoinColumn(name = "genero_id")
     private GeneroEntity genero;
 
     @ManyToMany(fetch = FetchType.LAZY,

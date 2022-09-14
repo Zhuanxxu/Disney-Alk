@@ -2,6 +2,7 @@ package com.alkemy.disney.mapper;
 
 import com.alkemy.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.dto.PersonajeDTO;
+import com.alkemy.disney.entity.GeneroEntity;
 import com.alkemy.disney.entity.PeliculaSerieEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,9 @@ public class PeliculaSerieMapper {
         peliculaSerieEntity.setCalificacion(dto.getCalificacion());
         peliculaSerieEntity.setFechaCreacion(dto.getFechaCreacion());
         peliculaSerieEntity.setTitulo(dto.getTitulo());
-        peliculaSerieEntity.setGenero(dto.getGenero());
+        GeneroEntity genero = new GeneroEntity();
+        genero.setId(dto.getGenero());
+        peliculaSerieEntity.setGenero(genero);
         //peliculaSerieEntity.setPersonajes(dto.getPersonajes());
 
 
@@ -35,13 +38,23 @@ public class PeliculaSerieMapper {
         dto.setCalificacion(entity.getCalificacion());
         dto.setTitulo(entity.getTitulo());
         dto.setFechaCreacion(entity.getFechaCreacion());
-        dto.setGenero(entity.getGenero());
+
+        dto.setGenero(entity.getGenero().getId());
         if (loadPersonaje) {
             List<PersonajeDTO> dtos = this.personajeMapper.personajeEntityList2DTOList(entity.getPersonajes(), false);
             dto.setPersonajes(dtos);
         }
         return dto;
     }
+    /*public void convertPeliculaEntity(PeliculaSerieEntity entity, PeliculaSerieDTO dto){
+        entity.setImagen(dto.getImagen());
+        entity.setCalificacion(dto.getCalificacion());
+        entity.setFechaCreacion(dto.getFechaCreacion());
+        entity.setTitulo(dto.getTitulo());
+        GeneroEntity genero = new GeneroEntity();
+        genero.setId(dto.getGenero());
+        entity.setGenero(genero);
+    }*/
 
     public List<PeliculaSerieDTO> peliculaSerieEntityList2DTOList(List<PeliculaSerieEntity> entities, boolean loadPersonaje){
         List<PeliculaSerieDTO> dtos = new ArrayList<>();
