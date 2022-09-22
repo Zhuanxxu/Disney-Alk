@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -50,7 +51,7 @@ public class PersonajeController {
 
     //POST nuevo personaje
     @PostMapping
-    public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeDTO personaje){
+    public ResponseEntity<PersonajeDTO> save(@Valid @RequestBody PersonajeDTO personaje){
 
         PersonajeDTO personajeGuardado = personajeService.save(personaje);
 
@@ -66,7 +67,7 @@ public class PersonajeController {
 
     //PUT editar personaje
     @PutMapping("/{id}")
-    public ResponseEntity<PersonajeDTO> editar(@PathVariable Long id, @RequestBody PersonajeDTO dto) {
+    public ResponseEntity<PersonajeDTO> editar(@PathVariable Long id,@Valid @RequestBody PersonajeDTO dto) {
 
         PersonajeDTO dtoFull = personajeService.editar(id, dto);
         return ResponseEntity.ok().body(dtoFull);

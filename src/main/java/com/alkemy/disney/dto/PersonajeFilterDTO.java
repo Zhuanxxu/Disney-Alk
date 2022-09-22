@@ -2,6 +2,7 @@ package com.alkemy.disney.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 

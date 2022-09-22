@@ -10,6 +10,7 @@ import java.util.Set;
 public interface PeliculaSerieService {
 
     PeliculaSerieDTO save(PeliculaSerieDTO dto);
+    PeliculaSerieDTO editar(Long id,PeliculaSerieDTO dto);
     List<PeliculaSerieDTO> getAllPeliculaSerie();
     PeliculaSerieDTO getDetailsById(Long id);
     PeliculaSerieDTO agregarPje(Long idPeli, Long idPj);

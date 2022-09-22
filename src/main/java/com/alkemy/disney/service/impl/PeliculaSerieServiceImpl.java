@@ -37,6 +37,18 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
         return result;
     }
 
+    public PeliculaSerieDTO editar(Long id, PeliculaSerieDTO dto){
+        Optional<PeliculaSerieEntity> optPelicula = peliculaSerieRepository.findById(id);
+        if (!optPelicula.isPresent()){
+            throw new ParamNotFound("Pelicula id no encontrado");
+        }
+        PeliculaSerieEntity entity = optPelicula.get();
+        peliculaSerieMapper.refreshPeliculaSerieEntityWithDTO(entity, dto);
+        PeliculaSerieEntity entitySaved = peliculaSerieRepository.save(entity);
+        PeliculaSerieDTO peliculaSerieDTO = peliculaSerieMapper.peliculaSerieEntity2DTO(entity,false);
+        return peliculaSerieDTO;
+    }
+
     public List<PeliculaSerieDTO> getAllPeliculaSerie() {
         List<PeliculaSerieEntity> entities = peliculaSerieRepository.findAll();
 

@@ -46,7 +46,7 @@ public class PeliculaSerieController {
     }
     
     @PostMapping
-    public ResponseEntity<PeliculaSerieDTO> save(@RequestBody PeliculaSerieDTO peliculaSerie){
+    public ResponseEntity<PeliculaSerieDTO> save(@Valid @RequestBody PeliculaSerieDTO peliculaSerie){
 
         PeliculaSerieDTO peliculaSerieGuardado = peliculaSerieService.save(peliculaSerie);
 
@@ -67,5 +67,12 @@ public class PeliculaSerieController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    //PUT editar Pelicula
+    @PutMapping("/{id}")
+    public ResponseEntity<PeliculaSerieDTO> editar(@PathVariable Long id,@Valid @RequestBody PeliculaSerieDTO dto) {
+
+        PeliculaSerieDTO dtoFull = peliculaSerieService.editar(id, dto);
+        return ResponseEntity.ok().body(dtoFull);
+    }
 
 }

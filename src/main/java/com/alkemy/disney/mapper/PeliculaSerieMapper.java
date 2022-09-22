@@ -46,7 +46,7 @@ public class PeliculaSerieMapper {
         }
         return dto;
     }
-    /*public void convertPeliculaEntity(PeliculaSerieEntity entity, PeliculaSerieDTO dto){
+    public void refreshPeliculaSerieEntityWithDTO(PeliculaSerieEntity entity, PeliculaSerieDTO dto){
         entity.setImagen(dto.getImagen());
         entity.setCalificacion(dto.getCalificacion());
         entity.setFechaCreacion(dto.getFechaCreacion());
@@ -54,7 +54,7 @@ public class PeliculaSerieMapper {
         GeneroEntity genero = new GeneroEntity();
         genero.setId(dto.getGenero());
         entity.setGenero(genero);
-    }*/
+    }
 
     public List<PeliculaSerieDTO> peliculaSerieEntityList2DTOList(List<PeliculaSerieEntity> entities, boolean loadPersonaje){
         List<PeliculaSerieDTO> dtos = new ArrayList<>();
