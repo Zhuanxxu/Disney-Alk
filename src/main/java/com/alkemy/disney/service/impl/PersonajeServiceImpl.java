@@ -39,6 +39,9 @@ public class PersonajeServiceImpl implements PersonajeService {
     }
     public PersonajeDTO getDetailsById(Long id){
         Optional<PersonajeEntity> optPersonaje = personajeRepository.findById(id);
+        if (!optPersonaje.isPresent()){
+            throw new ParamNotFound("Personaje id no encontrado");
+        }
 
         PersonajeEntity personaje = optPersonaje.get();
 
@@ -59,6 +62,10 @@ public class PersonajeServiceImpl implements PersonajeService {
     }
 
     public void delete(Long id){
+        Optional<PersonajeEntity> optPersonaje = personajeRepository.findById(id);
+        if (!optPersonaje.isPresent()){
+            throw new ParamNotFound("Personaje id no encontrado");
+        }
         this.personajeRepository.deleteById(id);
     }
 

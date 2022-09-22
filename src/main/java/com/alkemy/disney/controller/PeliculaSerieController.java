@@ -28,7 +28,7 @@ public class PeliculaSerieController {
         return ResponseEntity.ok().body(peliculaSeries);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/pje/{id}")
     public ResponseEntity<PeliculaSerieDTO> getDetailsById(@PathVariable Long id){
         PeliculaSerieDTO peliculaSeriesDTO = this.peliculaSerieService.getDetailsById(id);
 

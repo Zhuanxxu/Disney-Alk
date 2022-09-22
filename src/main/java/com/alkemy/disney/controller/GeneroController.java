@@ -26,7 +26,7 @@ public class GeneroController {
     }
 
     @PostMapping
-    public ResponseEntity<GeneroDTO> save(@Valid @RequestBody GeneroDTO genero){
+    public ResponseEntity<GeneroDTO> save(@Valid @RequestBody GeneroDTO genero) throws Exception{
 
         GeneroDTO generoGuardado = generoService.save(genero);
 

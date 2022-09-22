@@ -60,9 +60,11 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
     }
 
     public PeliculaSerieDTO getDetailsById(Long id){
-        Optional<PeliculaSerieEntity> optPersonaje = peliculaSerieRepository.findById(id);
-
-        PeliculaSerieEntity peliculaSerie = optPersonaje.get();
+        Optional<PeliculaSerieEntity> optPeli = peliculaSerieRepository.findById(id);
+        if(!optPeli.isPresent()){
+            throw new ParamNotFound("Pelicula ID no encontrada");
+        }
+        PeliculaSerieEntity peliculaSerie = optPeli.get();
 
         PeliculaSerieDTO dto = peliculaSerieMapper.peliculaSerieEntity2DTO(peliculaSerie, true);
 
