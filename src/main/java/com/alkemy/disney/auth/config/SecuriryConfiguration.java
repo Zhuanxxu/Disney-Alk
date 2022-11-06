@@ -27,7 +27,7 @@ public class SecuriryConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
-
+    
 
 
     @Override
